@@ -1,4 +1,4 @@
-## Introduction
+## Ecocardiogram
 A heart attack represents a life changing event, and of course many people feel scared and confused after a heart attack. But wouldn’t it be better if you get a confirmed prediction of your survival? So, we’re planning to work on a Data set of patients to be able to predict whether a patient dies within a year or survives. 
 There are few released articles concerning the same scope, one was published November 1, 1986 in Heart journal 
 
@@ -144,8 +144,8 @@ rectangle).
 
 ## Steps of building the model
 
-1. At first, we imported the dataset as a csv file and assign three variables for accuracy, specificity and sensitivity
-```markdown
+1. At first, we imported the dataset as a csv file and assign three variables for accuracy, specificity and sensitivity  
+```markdown  
 # Importing the dataset
 dataset= read.csv('PreData.csv')
 
@@ -153,9 +153,9 @@ dataset= read.csv('PreData.csv')
 acc=0
 sp=0
 sen=0
-```
-2.	We used the cross-validation technique to train our model. This technique allows you to train your model multiple times by changing the training set and the test set each of these times. After you finished training you take the average of the accuracy, sensitivity and specificity. This is a very good technique to let you be aware of the performance of your model.We used 10-fold cross-validation, so we made a for loop that will repeat 10 times. After that we split the data set into a test set with 9 records and a training set with 81 records. 
-```markdown
+```  
+2.	We used the cross-validation technique to train our model. This technique allows you to train your model multiple times by changing the training set and the test set each of these times. After you finished training you take the average of the accuracy, sensitivity and specificity. This is a very good technique to let you be aware of the performance of your model.We used 10-fold cross-validation, so we made a for loop that will repeat 10 times. After that we split the data set into a test set with 9 records and a training set with 81 records.   
+```markdown  
 #cross validation with 10 folds
 for (i in c(0,9,18,27,36,45,54,63,72,81)) {
   
@@ -163,9 +163,9 @@ for (i in c(0,9,18,27,36,45,54,63,72,81)) {
   training_set = dataset[-((1+i):(9+i)),]
   test_set = dataset[((1+i):(9+i)),]
   
-```
-3.	As our features has different ranges, we had to scale them so that they have the same range of numbers. The features that needed to be scaled are from column 2 to 6 and the other features are yes/no features, so no scaling needed. That allowed the classifier to be generated successfully using the logistic regression algorithm. This classifier has learned a pattern about the training set that we will use later for the prediction in the test set. 
-```markdown
+```  
+3.	As our features has different ranges, we had to scale them so that they have the same range of numbers. The features that needed to be scaled are from column 2 to 6 and the other features are yes/no features, so no scaling needed. That allowed the classifier to be generated successfully using the logistic regression algorithm. This classifier has learned a pattern about the training set that we will use later for the prediction in the test set.   
+```markdown  
  # Feature Scaling
   training_set[,2:6] = scale(training_set[,2:6])
   test_set[,2:6] = scale(test_set[,2:6])
@@ -175,19 +175,19 @@ for (i in c(0,9,18,27,36,45,54,63,72,81)) {
                    family = binomial,
                    data = training_set)
   
-```
+```  
 4.	At this section, we made a prediction vector of the survival factor that we are interested in using the classifier we have made before. We used the test set in order to make this vector. The prob_pred is a prediction vector but has continuous variables. What we want is to convert these continuous variables into discrete levels -0 or 1- to indicate whether the patient will survive or not. That’s why we made the y_pred vector. 
-After that, the confusion matrix was created between the predicted values and the actual ones from the test set.
-```markdown
+After that, the confusion matrix was created between the predicted values and the actual ones from the test set.   
+```markdown  
 # Predicting the Test set results
   prob_pred = predict(classifier, type = 'response', newdata = test_set[-7])
   y_pred = ifelse(prob_pred > 0.5, 1, 0)
   
   # Making the Confusion Matrix
   cm = table(test_set[, 7 ], y_pred)
-  
-```
-5.	Finally, we calculate the accuracy, specificity and sensitivity using the confusion matrix. The final step is to take the average of the three parameters and this will be our final output. 
+     
+```  
+5.	Finally, we calculate the accuracy, specificity and sensitivity using the confusion matrix. The final step is to take the average of the three parameters and this will be our final output.  
 ```markdown
 #calculating the accuracy,specificity and sensitivity
   acc= acc + (cm[1,1]+cm[2,2])/sum(cm)
@@ -199,13 +199,13 @@ After that, the confusion matrix was created between the predicted values and th
 acc= acc/10
 sp= sp/10
 sen= sen/10
-```
+```  
 
 ### Output
 Our output is not exactly the best and that is mainly because of two problems:
 *	The records number is very low, so the model had not enough records to train on.
 *	There were too many missing values and that -of course- affects the performance of our model.
-But the important thing is that the specificity percentage is high enough to be considered good and that is the most important parameter in our problem.
+But the important thing is that the specificity percentage is high enough to be considered good and that is the most important parameter in our problem.  
 ```markdown
 > acc
 [1] 0.6222222
@@ -213,7 +213,7 @@ But the important thing is that the specificity percentage is high enough to be 
 [1] 0.8152381
 >sen
 [1] 0.3583333
-```
+```  
 
 ##  Summary
 At the end, we successfully obtained our goal and that is being able to predict whether the patient who suffered a heart attack will survive for one year or nor depends on some medical measurements. We faced some difficulties due to the small number of records and the missing values that led to reducing the model performance. Despite that, we obtained an acceptable specificity percentage and that is our most important parameter as we said before. So, the final result is fine with us but we are looking forward to enhance our model performance using advanced methods and that will be our future work.
