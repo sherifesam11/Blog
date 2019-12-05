@@ -13,7 +13,9 @@ the survival of patients and giving them hope in life after they’ve lost it. A
 
 In the past, to express our data by a graph we used a formula which named by linear regression, but by the time we found that there's a data which represented by only the values of (0,1) and if we use the linear regression with these data it will not give us the best representation of it.
 So as we deal with the data of (0,1) for the best representation of it we use the logistic regression.
-It is derived from the sigmoid function:  $p= \frac{1}{1+e^{-y}}$  
+It is derived from the sigmoid function:
+$p= \frac{1}{1+e^{-y}}$  
+$x^2$
 And the final logistic regression function is:  $$ln⁡(p/(1-p))=b_0+b_1 x$$  
 ![logistic regression](machine1.png)  
 By this function we can get the best fitting line that can fit these data and the line is the same slope of the line of linear regression
