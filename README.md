@@ -16,9 +16,10 @@ So as we deal with the data of (0,1) for the best representation of it we use th
 It is derived from the sigmoid function:   
 
 ![first equation](http://latex.codecogs.com/gif.latex?p%3D%20%5Cfrac%7B1%7D%7B1&plus;e%5E%7B-y%7D%7D)   
-$$p= \frac{1}{1+e^{-y}}$$    
-$x^2$   
-And the final logistic regression function is:  $$ln⁡(p/(1-p))=b_0+b_1 x$$  
+
+And the final logistic regression function is:
+
+![second equation](http://latex.codecogs.com/gif.latex?ln%28%5Cfrac%7Bp%7D%7B1-p%7D%29%3D%20b_0%20&plus;%20b_1%20x)
 ![logistic regression](machine1.png)  
 By this function we can get the best fitting line that can fit these data and the line is the same slope of the line of linear regression
 As we use this representation, we can use it to predict probabilities and we are very touched on the probabilities that lives between 0,1 and instead of predicting for sure that a something will or will not happen, we predict probability.
