@@ -207,7 +207,7 @@ sp= sp/10
 sen= sen/10
 ```  
 
-### Output
+* **Output**
 Our output is not exactly the best and that is mainly because of two problems:
 *	The records number is very low, so the model had not enough records to train on.
 *	There were too many missing values and that -of course- affects the performance of our model.
