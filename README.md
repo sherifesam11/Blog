@@ -154,7 +154,7 @@ sp=0
 sen=0
 ```
 2.	We used the cross-validation technique to train our model. This technique allows you to train your model multiple times by changing the training set and the test set each of these times. After you finished training you take the average of the accuracy, sensitivity and specificity. This is a very good technique to let you be aware of the performance of your model.We used 10-fold cross-validation, so we made a for loop that will repeat 10 times. After that we split the data set into a test set with 9 records and a training set with 81 records. 
-```
+```markdown
 #cross validation with 10 folds
 for (i in c(0,9,18,27,36,45,54,63,72,81)) {
   
@@ -164,7 +164,7 @@ for (i in c(0,9,18,27,36,45,54,63,72,81)) {
   
 ```
 3.	As our features has different ranges, we had to scale them so that they have the same range of numbers. The features that needed to be scaled are from column 2 to 6 and the other features are yes/no features, so no scaling needed. That allowed the classifier to be generated successfully using the logistic regression algorithm. This classifier has learned a pattern about the training set that we will use later for the prediction in the test set. 
-```
+```markdown
  # Feature Scaling
   training_set[,2:6] = scale(training_set[,2:6])
   test_set[,2:6] = scale(test_set[,2:6])
@@ -177,7 +177,7 @@ for (i in c(0,9,18,27,36,45,54,63,72,81)) {
 ```
 4.	At this section, we made a prediction vector of the survival factor that we are interested in using the classifier we have made before. We used the test set in order to make this vector. The prob_pred is a prediction vector but has continuous variables. What we want is to convert these continuous variables into discrete levels -0 or 1- to indicate whether the patient will survive or not. That’s why we made the y_pred vector. 
 After that, the confusion matrix was created between the predicted values and the actual ones from the test set.
-```
+```markdown
 # Predicting the Test set results
   prob_pred = predict(classifier, type = 'response', newdata = test_set[-7])
   y_pred = ifelse(prob_pred > 0.5, 1, 0)
@@ -186,8 +186,8 @@ After that, the confusion matrix was created between the predicted values and th
   cm = table(test_set[, 7 ], y_pred)
   
 ```
-5.	Finally, we calculate the accuracy, specificity and sensitivity using the confusion matrix. The final step is to take the average of the three parameters and this will be our final output.
-```
+5.	Finally, we calculate the accuracy, specificity and sensitivity using the confusion matrix. The final step is to take the average of the three parameters and this will be our final output. 
+```markdown
 #calculating the accuracy,specificity and sensitivity
   acc= acc + (cm[1,1]+cm[2,2])/sum(cm)
   sp= sp + cm[1,1]/(cm[1,1]+cm[1,2])
