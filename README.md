@@ -15,7 +15,7 @@ In the past, to express our data by a graph we used a formula which named by lin
 So as we deal with the data of (0,1) for the best representation of it we use the logistic regression.
 It is derived from the sigmoid function: $$p=1/(1+e^(-y) )$$
 And the final logistic regression function is:$$ln⁡(p/(1-p))=b_0+b_1 x$$
-![logistic regression](https://cdn1.imggmi.com/uploads/2019/12/5/fc1177f83010189c0a220f449b9f707e-full.jpg)  
+![logistic regression](machine1.png)  
 By this function we can get the best fitting line that can fit these data and the line is the same slope of the line of linear regression
 As we use this representation, we can use it to predict probabilities and we are very touched on the probabilities that lives between 0,1 and instead of predicting for sure that a something will or will not happen, we predict probability.
 
