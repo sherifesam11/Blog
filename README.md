@@ -1,4 +1,4 @@
-## Ecocardiogram
+## Heart attack survival project with machine learning
 A heart attack represents a life changing event, and of course many people feel scared and confused after a heart attack. But wouldn’t it be better if you get a confirmed prediction of your survival? So, we’re planning to work on a Data set of patients to be able to predict whether a patient dies within a year or survives. 
 There are few released articles concerning the same scope, one was published November 1, 1986 in Heart journal 
 
