@@ -200,14 +200,12 @@ After that, the confusion matrix was created between the predicted values and th
   sp= sp + cm[1,1]/(cm[1,1]+cm[1,2])
   sen= sen +  cm[2,2]/(cm[2,1]+cm[2,2])
   
-}
-
 acc= acc/10
 sp= sp/10
 sen= sen/10
 ```  
 
-* **Output**
+### Output
 Our output is not exactly the best and that is mainly because of two problems:
 *	The records number is very low, so the model had not enough records to train on.
 *	There were too many missing values and that -of course- affects the performance of our model.
