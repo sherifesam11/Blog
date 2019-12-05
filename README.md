@@ -28,7 +28,7 @@ To achieve this objective, we checked the performance of our model using three p
 We are deeply concerned about the specificity parameter because it would be a disaster if we predicted that some patient will survive and the actual result is that he won’t. So, we tried to make that parameter as accurate as possible through our work. 
 
 ## Dataset
-We are mainly going to use Ecocardiogram data set from the UCL [machine learning repository](https://archive.ics.uci.edu/ml/datasets/echocardiogram).   This data set was donated by [Dr. Steven Salzberg](https://www.bme.jhu.edu/faculty_staff/steven-l-salzberg-phd/)  in February 28, 1989. He used it in a research that was concerned
+We are mainly going to use Ecocardiogram data set from the [UCL machine learning repository](https://archive.ics.uci.edu/ml/datasets/echocardiogram).   This data set was donated by [Dr. Steven Salzberg](https://www.bme.jhu.edu/faculty_staff/steven-l-salzberg-phd/)  in February 28, 1989. He used it in a research that was concerned
 in computing technology
 
 The original dataset has 12 columns and 132 records. To make it easy for us to work on the data set we reduced the columns to 8 as we deduced that some of the features were concluded from other ones and some of them are useless in our work. Also, we faced some difficulties with the records as there were too many missing values, so -after we had a look on other resources that used this data set- we had to reduce the records to just 90. The deleted recorded were mainly deleted because of they had so many missing values or because the patient was observed for less than a year and we’re interested in whether the patient will survive or not in a year or more.
