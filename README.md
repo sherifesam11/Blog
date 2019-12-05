@@ -144,7 +144,7 @@ rectangle).
 ## Steps of building the model
 
 1. At first, we imported the dataset as a csv file and assign three variables for accuracy, specificity and sensitivity
-```
+```markdown
 # Importing the dataset
 dataset= read.csv('PreData.csv')
 
