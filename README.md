@@ -4,7 +4,7 @@ There are few released articles concerning the same scope, one was published Nov
 
  It mainly was about a cross sectional echocardiographic study of 345 patients. And its result would be very helpful in our research.
 ## Why did we choose this particular matter?
-No one can deny that heart disease is the number one health threat in the world as it’s responsible for the most deaths worldwide for all genders and races. According to the AHA - American Heart Association – every 40 seconds an American citizen will have a heart attack  [ref1](https://www.healthline.com/health/heart-disease/statistics). 
+No one can deny that heart disease is the number one health threat in the world as it’s responsible for the most deaths worldwide for all genders and races. According to the AHA - [American Heart Association](https://www.healthline.com/health/heart-disease/statistics) – every 40 seconds an American citizen will have a heart attack  . 
 
 The estimated annual incidence of heart attacks in the USA is 720,000 new attacks and 335,000 recurrent attacks. Doing researches and building statistics in such field is so interesting cause you’re trying to minimize the danger of the number one health threat worldwide by predicting
 the survival of patients and giving them hope in life after they’ve lost it. And also, by predicting the people who will not survive we’re giving them a chance to take good care of their health and by that they may beat the prediction and survive.
@@ -28,9 +28,7 @@ To achieve this objective, we checked the performance of our model using three p
 We are deeply concerned about the specificity parameter because it would be a disaster if we predicted that some patient will survive and the actual result is that he won’t. So, we tried to make that parameter as accurate as possible through our work. 
 
 ## Dataset
-We are mainly going to use Ecocardiogram data set from the UCL machine learning repository  
-[ref2](https://archive.ics.uci.edu/ml/datasets/echocardiogram). This data set was donated by Dr. Steven Salzberg
-[ref3](https://www.bme.jhu.edu/faculty_staff/steven-l-salzberg-phd/)  in February 28, 1989. He used it in a research that was concerned
+We are mainly going to use Ecocardiogram data set from the UCL [machine learning repository](https://archive.ics.uci.edu/ml/datasets/echocardiogram).   This data set was donated by [Dr. Steven Salzberg](https://www.bme.jhu.edu/faculty_staff/steven-l-salzberg-phd/)  in February 28, 1989. He used it in a research that was concerned
 in computing technology
 
 The original dataset has 12 columns and 132 records. To make it easy for us to work on the data set we reduced the columns to 8 as we deduced that some of the features were concluded from other ones and some of them are useless in our work. Also, we faced some difficulties with the records as there were too many missing values, so -after we had a look on other resources that used this data set- we had to reduce the records to just 90. The deleted recorded were mainly deleted because of they had so many missing values or because the patient was observed for less than a year and we’re interested in whether the patient will survive or not in a year or more.
