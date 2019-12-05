@@ -194,7 +194,8 @@ After that, the confusion matrix was created between the predicted values and th
      
 ```  
 * Finally, we calculate the accuracy, specificity and sensitivity using the confusion matrix. The final step is to take the average of the three parameters and this will be our final output.  
-```markdown
+
+```markdown  
 #calculating the accuracy,specificity and sensitivity
   acc= acc + (cm[1,1]+cm[2,2])/sum(cm)
   sp= sp + cm[1,1]/(cm[1,1]+cm[1,2])
@@ -202,7 +203,7 @@ After that, the confusion matrix was created between the predicted values and th
   
 acc= acc/10
 sp= sp/10
-sen= sen/10
+sen= sen/10  
 ```  
 
 ### Output
