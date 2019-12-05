@@ -56,7 +56,7 @@ numerical data.
 depending on the relation between the variance of ages (Y-Axis) and if the
 segment of that specific age in our dataset had survived or not (X-Axis).
 
- ![image2](https://cdn1.imggmi.com/uploads/2019/12/5/2d25b846a265ad09a95d85c24fda55ec-full.jpg "A Segmented bar chart")  
+ ![image2](machine2.png "A Segmented bar chart")  
  
 * The column with (0.0) : illustrates the patients who had been passed
 away.
@@ -75,7 +75,7 @@ in the upcoming graphs.
 The following figure clarifies a binary-to-binary relationship
 between our permanent parameter (Alive or not) and the pericardial
 parameter.
-![image3](https://cdn1.imggmi.com/uploads/2019/12/5/e44d7af388eb99e8a9327cfdae3b6ea0-full.jpg "A stacked bar plot")  
+![image3](machine3.png "A stacked bar plot")  
 The pericardial effusion is the excessing fluid between the heart and the sac
 surrounding the heart. And we examine if the patient has a pericardial
 effusion or not (zero or one).
@@ -86,7 +86,7 @@ really serious threat to our patients’ lives.
 ### Contractility
 The following figure describe the relevance between the numerical
 values of the contractility and the survival probability.
-![image4](https://cdn1.imggmi.com/uploads/2019/12/5/30a3911e6faaffb4772ac359fbc38b2b-full.jpg "A box plot")  
+![image4](machine4.png "A box plot")  
 Don’t feel shocked about the graph. we’ve made a deal together that the
 discrete values are preferred to be represented by a box plot. And we’re only
 considered with the horizontal line inside this rectangle. which symbolize
@@ -106,7 +106,7 @@ a higher chance to live (in the rectangle on the right).
 
 ### EPSS
 this figure is just like the previous one but the relationship is different this time
-![image5](https://cdn1.imggmi.com/uploads/2019/12/5/2c193be2d9eac4eb5085ea7db24191c2-full.jpg "A box plot")  
+![image5](machine5.png "A box plot")  
 It’s between the EPSS and the survival probability. The EPSS is the
 acronym for E - P oint S eptal S eparation
 When the left ventricle relaxes during diastole, blood rushes through the
@@ -135,7 +135,7 @@ volume.
 Thus, from the definition, it’s obvious that if its value is high, so it’s a
 serious threat. So, it’s not preferred for sure to find a great value of it in the
 examination. It’s a bad sign.
-![image6](https://cdn1.imggmi.com/uploads/2019/12/5/15e0cfa98544dd06e696a115081977d7-full.jpg "A box plot")  
+![image6](machine6.png "A box plot")  
 And our graph corroborates these words. The median line,which is our only
 concern, is higher in the column which represents the dead (The left
 rectangle).
@@ -144,19 +144,59 @@ rectangle).
 
 1. At first, we imported the dataset as a csv file and assign three variables for accuracy, specificity and sensitivity
 ```
+# Importing the dataset
+dataset= read.csv('PreData.csv')
+
+#accuracy, specificity and sensitivity variables
+acc=0
+sp=0
+sen=0
 ```
 2.	We used the cross-validation technique to train our model. This technique allows you to train your model multiple times by changing the training set and the test set each of these times. After you finished training you take the average of the accuracy, sensitivity and specificity. This is a very good technique to let you be aware of the performance of your model.We used 10-fold cross-validation, so we made a for loop that will repeat 10 times. After that we split the data set into a test set with 9 records and a training set with 81 records. 
 ```
+#cross validation with 10 folds
+for (i in c(0,9,18,27,36,45,54,63,72,81)) {
+  
+# Splitting the dataset into the Training set and Test set
+  training_set = dataset[-((1+i):(9+i)),]
+  test_set = dataset[((1+i):(9+i)),]
+  
 ```
 3.	As our features has different ranges, we had to scale them so that they have the same range of numbers. The features that needed to be scaled are from column 2 to 6 and the other features are yes/no features, so no scaling needed. That allowed the classifier to be generated successfully using the logistic regression algorithm. This classifier has learned a pattern about the training set that we will use later for the prediction in the test set. 
 ```
+ # Feature Scaling
+  training_set[,2:6] = scale(training_set[,2:6])
+  test_set[,2:6] = scale(test_set[,2:6])
+  
+  # Fitting Logistic Regression to the Training set
+  classifier = glm(formula = Alive.or.not ~ .,
+                   family = binomial,
+                   data = training_set)
+  
 ```
 4.	At this section, we made a prediction vector of the survival factor that we are interested in using the classifier we have made before. We used the test set in order to make this vector. The prob_pred is a prediction vector but has continuous variables. What we want is to convert these continuous variables into discrete levels -0 or 1- to indicate whether the patient will survive or not. That’s why we made the y_pred vector. 
 After that, the confusion matrix was created between the predicted values and the actual ones from the test set.
 ```
+# Predicting the Test set results
+  prob_pred = predict(classifier, type = 'response', newdata = test_set[-7])
+  y_pred = ifelse(prob_pred > 0.5, 1, 0)
+  
+  # Making the Confusion Matrix
+  cm = table(test_set[, 7 ], y_pred)
+  
 ```
 5.	Finally, we calculate the accuracy, specificity and sensitivity using the confusion matrix. The final step is to take the average of the three parameters and this will be our final output.
 ```
+#calculating the accuracy,specificity and sensitivity
+  acc= acc + (cm[1,1]+cm[2,2])/sum(cm)
+  sp= sp + cm[1,1]/(cm[1,1]+cm[1,2])
+  sen= sen +  cm[2,2]/(cm[2,1]+cm[2,2])
+  
+}
+
+acc= acc/10
+sp= sp/10
+sen= sen/10
 ```
 
 ### Output
@@ -165,6 +205,12 @@ Our output is not exactly the best and that is mainly because of two problems:
 *	There were too many missing values and that -of course- affects the performance of our model.
 But the important thing is that the specificity percentage is high enough to be considered good and that is the most important parameter in our problem.
 ```
+> acc
+[1] 0.6222222
+> sp
+[1] 0.8152381
+>sen
+[1] 0.3583333
 ```
 
 ##  Summary
