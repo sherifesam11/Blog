@@ -211,7 +211,7 @@ Our output is not exactly the best and that is mainly because of two problems:
 *	There were too many missing values and that -of course- affects the performance of our model.
 But the important thing is that the specificity percentage is high enough to be considered good and that is the most important parameter in our problem.  
 
-```markdown
+```markdown  
 > acc
 [1] 0.6222222
 > sp
